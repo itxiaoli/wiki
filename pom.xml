@@ -57,7 +57,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.4.1</version>
                 <configuration>
-                    <mainClass>cn.itxiaoli.wiki.WikiApplication</mainClass>
+                    <mainClass>cn.itxiaoli.config.WikiApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
