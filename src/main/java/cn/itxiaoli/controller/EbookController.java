@@ -1,6 +1,7 @@
 package cn.itxiaoli.controller;
 
 import cn.itxiaoli.domain.Ebook;
+import cn.itxiaoli.resp.CommonResp;
 import cn.itxiaoli.service.EbookService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,8 +24,12 @@ public class EbookController {
     private EbookService ebookService;
 
     @GetMapping("/findAll")
-    public List<Ebook> findAll(){
-        return ebookService.findAll();
+    public CommonResp findAll(){
+        List<Ebook> list = ebookService.findAll();
+        CommonResp<List<Ebook>> resp = new CommonResp<>();
+        resp.setContent(list);
+        resp.setMessage("响应成功");
+        return resp;
     }
 
 }
