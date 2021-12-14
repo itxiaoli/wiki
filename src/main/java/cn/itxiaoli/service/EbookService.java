@@ -5,11 +5,10 @@ import cn.itxiaoli.domain.EbookExample;
 import cn.itxiaoli.mapper.EbookMapper;
 import cn.itxiaoli.req.EbookReq;
 import cn.itxiaoli.resp.EbookResp;
-import org.springframework.beans.BeanUtils;
+import cn.itxiaoli.utils.CopyUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,12 +30,6 @@ public class EbookService {
         criteria.andNameLike("%" + req.getName() + "%");
         List<Ebook> ebookList = ebookMapper.selectByExample(ebookExample);
 
-        List<EbookResp> respList = new ArrayList<>();
-        for (Ebook ebook : ebookList) {
-            EbookResp ebookResp = new EbookResp();
-            BeanUtils.copyProperties(ebook, ebookResp);
-            respList.add(ebookResp);
-        }
-        return respList;
+        return CopyUtil.copyList(ebookList, EbookResp.class);
     }
 }
