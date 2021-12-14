@@ -1,5 +1,6 @@
 package cn.itxiaoli.config;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -12,6 +13,7 @@ import org.springframework.core.env.Environment;
  */
 @SpringBootApplication
 @ComponentScan("cn.itxiaoli")
+@MapperScan("cn.itxiaoli.mapper")
 public class WikiApplication {
 
     private static final Logger LOG = LoggerFactory.getLogger(WikiApplication.class);
