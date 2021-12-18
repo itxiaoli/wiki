@@ -1,10 +1,7 @@
 <template>
   <a-layout>
     <a-layout-sider width="200" style="background: #fff">
-      <a-menu
-        mode="inline"
-        :style="{ height: '100%', borderRight: 0 }"
-      >
+      <a-menu mode="inline" :style="{ height: '100%', borderRight: 0 }">
         <a-sub-menu key="sub1">
           <template #title>
             <span>
@@ -58,9 +55,17 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import axios from "axios";
 
 export default defineComponent({
   name: "Home",
-  components: {},
+  setup() {
+    console.log("setup");
+    axios
+      .get("http://localhost:8080/ebook/findAll?name=Spring")
+      .then((response) => {
+        console.log(response);
+      });
+  },
 });
 </script>
