@@ -48,24 +48,32 @@
         minHeight: '280px',
       }"
     >
-      Content
+      <pre>{{ ebooks }}</pre>
     </a-layout-content>
   </a-layout>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import axios from "axios";
 
 export default defineComponent({
   name: "Home",
   setup() {
-    console.log("setup");
-    axios
-      .get("http://localhost:8080/ebook/findAll?name=Spring")
-      .then((response) => {
-        console.log(response);
-      });
+    const ebooks = ref();
+
+    // 生命周期函数 执行完就销毁
+    onMounted(() => {
+      axios
+        .get("http://localhost:8080/ebook/findAll?name=Spring")
+        .then((response) => {
+          const data = response.data;
+          ebooks.value = data.content;
+        });
+    });
+    return {
+      ebooks,
+    };
   },
 });
 </script>
