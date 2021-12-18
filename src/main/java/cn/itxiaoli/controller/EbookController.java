@@ -24,7 +24,7 @@ public class EbookController {
     @Resource
     private EbookService ebookService;
 
-    @GetMapping("/findAll")
+    @GetMapping("/list")
     public CommonResp findAll(EbookReq req) {
         List<EbookResp> list = ebookService.findAll(req);
         CommonResp<List<EbookResp>> resp = new CommonResp<>();

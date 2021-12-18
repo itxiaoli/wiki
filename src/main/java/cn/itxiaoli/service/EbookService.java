@@ -7,6 +7,7 @@ import cn.itxiaoli.req.EbookReq;
 import cn.itxiaoli.resp.EbookResp;
 import cn.itxiaoli.utils.CopyUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -27,7 +28,12 @@ public class EbookService {
     public List<EbookResp> findAll(EbookReq req) {
         EbookExample ebookExample = new EbookExample();
         EbookExample.Criteria criteria = ebookExample.createCriteria();
-        criteria.andNameLike("%" + req.getName() + "%");
+
+        // 不为空 进行模糊查询
+        if (!ObjectUtils.isEmpty(req.getName())) {
+            criteria.andNameLike("%" + req.getName() + "%");
+        }
+
         List<Ebook> ebookList = ebookMapper.selectByExample(ebookExample);
 
         return CopyUtil.copyList(ebookList, EbookResp.class);

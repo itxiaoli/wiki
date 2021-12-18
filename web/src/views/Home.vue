@@ -52,7 +52,6 @@
       <a-list
         item-layout="vertical"
         size="large"
-        :pagination="pagination"
         :data-source="ebooks"
         :grid="{ gutter: 20, column: 4 }"
       >
@@ -89,12 +88,10 @@ export default defineComponent({
 
     // 生命周期函数 执行完就销毁
     onMounted(() => {
-      axios
-        .get("http://localhost:8080/ebook/findAll?name=Spring")
-        .then((response) => {
-          const data = response.data;
-          ebooks.value = data.content;
-        });
+      axios.get("http://localhost:8080/ebook/list").then((response) => {
+        const data = response.data;
+        ebooks.value = data.content;
+      });
     });
 
     return {
@@ -114,3 +111,13 @@ export default defineComponent({
   },
 });
 </script>
+
+<style  scoped>
+.ant-avatar {
+  widows: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 8%;
+  margin: 5px 0;
+}
+</style>
