@@ -10,6 +10,7 @@ import * as Icons from "@ant-design/icons-vue";
 const app = createApp(App);
 app.use(store).use(router).use(Antd).mount("#app");
 
+// 一次性加载所又图标
 const icons: any = Icons;
 for (const i in icons) {
   app.component(i, icons[i]);
