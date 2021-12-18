@@ -88,7 +88,7 @@ export default defineComponent({
 
     // 生命周期函数 执行完就销毁
     onMounted(() => {
-      axios.get("http://localhost:8080/ebook/list").then((response) => {
+      axios.get("/ebook/list").then((response) => {
         const data = response.data;
         ebooks.value = data.content;
       });
